@@ -29,6 +29,7 @@ class Gatling extends Creature {
             return;
         }
 
+        //taskQueue.push(onDone => this.view.showAttack(onDone));
         for(let oppositeCard of oppositeCards){
             taskQueue.push(onDone => this.view.showAttack(onDone));
             taskQueue.push(onDone => {
@@ -37,9 +38,8 @@ class Gatling extends Creature {
                 }
             });
         }
-
+        taskQueue.continueWith(continuation);
     }
-
 }
 
 // Отвечает является ли карта уткой.
@@ -117,10 +117,12 @@ const seriffStartDeck = [
     new Duck(),
     new Duck(),
     new Duck(),
-    new Duck(),
+    new Gatling(),
 ];
 const banditStartDeck = [
     new Trasher(),
+    new Dog(),
+    new Dog(),
 ];
 
 
