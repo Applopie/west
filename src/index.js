@@ -3,6 +3,18 @@ import Game from './Game.js';
 import TaskQueue from './TaskQueue.js';
 import SpeedRate from './SpeedRate.js';
 
+class Creature extends Card {
+    constructor(...args) {
+        super(...args);
+    }
+
+    getDescriptions() {
+        const first = getCreatureDescription(this);
+        const second = super.getDescriptions();
+        return [first, second];
+    }
+}
+
 // Отвечает является ли карта уткой.
 function isDuck(card) {
     return card && card.quacks && card.swims;
@@ -30,7 +42,7 @@ function getCreatureDescription(card) {
 
 
 // Основа для утки.
-class Duck extends Card {
+class Duck extends Creature {
     constructor(){
         super('Мирная утка', 2);
     }
@@ -44,9 +56,9 @@ class Duck extends Card {
 
 
 // Основа для собаки.
-class Dog extends Card {
+class Dog extends Creature {
     constructor() {
-        super('Пес-Бндит', 3);
+        super('Пес-Бандит', 3);
     }
 }
 
